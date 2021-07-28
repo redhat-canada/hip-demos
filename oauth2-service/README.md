@@ -6,9 +6,6 @@ java -Dquarkus.http.port=8081 -jar target/quarkus-app/quarkus-run.jar
 java -Dquarkus.http.port=8082 -jar target/quarkus-app/quarkus-run.jar
 ```
 ```
-docker run -p 8180:8080 -p 8543:8443 -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin quay.io/keycloak/keycloak:14.0.0
-```
-```
 export access_token=$(\
     curl --insecure -X POST https://localhost:8543/auth/realms/quarkus/protocol/openid-connect/token \
     --user backend-service:secret \
