@@ -14,7 +14,7 @@ public class Application extends SpringBootServletInitializer {
     }
 
     @Component
-    class RestApi extends RouteBuilder {
+    class Integration extends RouteBuilder {
 
         @Override
         public void configure() {
