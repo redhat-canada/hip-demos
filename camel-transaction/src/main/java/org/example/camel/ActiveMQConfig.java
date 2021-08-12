@@ -29,8 +29,8 @@ public class ActiveMQConfig {
     public ActiveMQConnectionFactoryCustomizer activeMQConnectionFactoryCustomizer() {
         return factory -> {
             RedeliveryPolicy policy = factory.getRedeliveryPolicy();
-            policy.setRedeliveryDelay(10000);
-            policy.setMaximumRedeliveries(-1); // https://activemq.apache.org/message-redelivery-and-dlq-handling
+            policy.setRedeliveryDelay(1000);
+            policy.setMaximumRedeliveries(1); // https://activemq.apache.org/message-redelivery-and-dlq-handling
             factory.setRedeliveryPolicy(policy);
         };
     }

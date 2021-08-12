@@ -47,7 +47,7 @@ services:
     container_name: adminer
     restart: always
     ports:
-      - 8080:8080
+      - 6060:8080
 
   activemq:
     image: registry.redhat.io/amq7/amq-broker:latest

@@ -13,16 +13,13 @@ public class MainRoute extends RouteBuilder {
 
     @Override
     public void configure() {
-//
-//        from("timer:demo?repeatCount=10").routeId("producer")
-//                .process(e -> e.getIn().setBody(String.valueOf(counter.incrementAndGet())))
-//                .to("activemq:demo");
 
-        from("activemq:demo?transacted=true").routeId("consumer")
-                .transacted("policyPropagationRequired")
+        from("jms:demo?transacted=true").routeId("demo")
+                .transacted()
                 .log("${body}")
                 .process(this::process)
-                .to("sql:insert into demo (id, name) values (:#Id, :#Name)");
+                .to("sql:insert into demo (id, name) values (:#Id, :#Name)?dataSource=postgres")
+                .to("sql:insert into demo (id, name) values (:#Id, :#Name)?dataSource=mysql");
     }
 
     private void process(Exchange exchange) {
