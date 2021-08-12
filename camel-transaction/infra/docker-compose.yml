@@ -13,7 +13,7 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - ./create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - ./postgres_db.sql:/docker-entrypoint-initdb.d/postgres_db.sql
     command: 'postgres --max_prepared_transactions=100'
 
   pgadmin:
@@ -36,7 +36,7 @@ services:
       MYSQL_PASSWORD: 'demo'
       MYSQL_ROOT_PASSWORD: 'demo'
     volumes:
-      - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
+      - ./mysql_db.sql:/docker-entrypoint-initdb.d/mysql_db.sql
     ports:
       - '3306:3306'
     expose:

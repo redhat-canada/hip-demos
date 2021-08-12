@@ -6,6 +6,7 @@ import org.postgresql.xa.PGXADataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
 
@@ -30,6 +31,16 @@ public class SpringJdbcConfig {
         pgxaDataSource.setUser("demo");
         pgxaDataSource.setPassword("demo");
         NarayanaDataSource dataSource = new NarayanaDataSource(pgxaDataSource);
+        return dataSource;
+    }
+
+    @Bean
+    public DataSource bam() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/demo");
+        dataSource.setUsername("postgres");
+        dataSource.setPassword("postgres");
         return dataSource;
     }
 }
