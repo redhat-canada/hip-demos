@@ -1,6 +1,0 @@
-{"id":"10.0.0.183.tm162872875526000360","wasCommitted":true,"participants":[{"uri":"10.0.0.183.tm362","state":"COMMITTING","expires":1628729055364,"resourceName":"xa.amq"}]}
-{"id":"10.0.0.183.tm162872654417600299","wasCommitted":true,"participants":[{"uri":"10.0.0.183.tm301","state":"COMMITTING","expires":1628726844285,"resourceName":"xa.amq"}]}
-{"id":"10.0.0.183.tm162874352448100316","wasCommitted":true,"participants":[{"uri":"10.0.0.183.tm316","state":"COMMITTING","expires":1628743824588,"resourceName":"xa.amq"}]}
-{"id":"10.0.0.183.tm162877322346201357","wasCommitted":true,"participants":[{"uri":"10.0.0.183.tm1357","state":"COMMITTING","expires":1628773523571,"resourceName":"xa.amq"}]}
-{"id":"10.0.0.183.tm162876021738800948","wasCommitted":true,"participants":[{"uri":"10.0.0.183.tm948","state":"COMMITTING","expires":1628760517498,"resourceName":"xa.amq"}]}
-{"id":"10.0.0.183.tm162874254944600308","wasCommitted":true,"participants":[{"uri":"10.0.0.183.tm308","state":"COMMITTING","expires":1628742849549,"resourceName":"xa.amq"}]}
