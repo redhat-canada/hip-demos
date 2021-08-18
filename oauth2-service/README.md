@@ -1,6 +1,7 @@
 # oauth2-service
 See https://quarkus.io/guides/security-keycloak-authorization
 ```
+cd ../oauth2-service
 mvn clean package
 java -Dquarkus.http.port=8081 -jar target/quarkus-app/quarkus-run.jar
 java -Dquarkus.http.port=8082 -jar target/quarkus-app/quarkus-run.jar
