@@ -52,7 +52,7 @@ public class MainRoute extends RouteBuilder {
 
         from("direct:start").routeId("bam-start")
                 .saga().propagation(SagaPropagation.NOT_SUPPORTED)
-                .log("Log start: ${header.Id}")
+                .log("Log start: ${body}")
                 .to("sql:INSERT INTO BAM (ID, NAME) VALUES (:#Id, :#Name)?dataSource=bam");
 
         from("direct:completion").routeId("completion")
