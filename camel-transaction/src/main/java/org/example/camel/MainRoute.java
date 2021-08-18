@@ -2,6 +2,7 @@ package org.example.camel;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.processor.idempotent.MemoryIdempotentRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -20,17 +21,22 @@ public class MainRoute extends RouteBuilder {
                 .log("Main process: ${body}")
                 .process(this::setTransactionData)
                 .wireTap("direct:start").newExchange(this::setBamStartData)
+                .doTry()
                 .to("sql:insert into demo (id, name) values (:#Id, :#Name)?dataSource=postgres")
                 .to("sql:insert into demo (id, name) values (:#Id, :#Name)?dataSource=mysql")
-                .wireTap("direct:finish").newExchange(this::setBamFinishData);
+                .doFinally()
+                .wireTap("direct:finish").newExchange(this::setBamFinishData)
+                .end();
 
         from("direct:start").routeId("bam-start")
                 .transacted("PROPAGATION_REQUIRES_NEW")
+                .idempotentConsumer(header("JMSMessageID"), MemoryIdempotentRepository.memoryIdempotentRepository(2000))
                 .log("BAM start: ${body}")
                 .to("sql:insert into bam (id, name) values (:#Id, :#Name)?dataSource=bam");
 
         from("direct:finish").routeId("bam-finish")
                 .transacted("PROPAGATION_REQUIRES_NEW")
+                .idempotentConsumer(header("JMSMessageID"), MemoryIdempotentRepository.memoryIdempotentRepository(2000))
                 .log("BAM finish: ${body}")
                 .to("sql:insert into bam (id, name) values (:#Id, :#Name)?dataSource=bam");
     }
